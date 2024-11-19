@@ -35,6 +35,13 @@ app.get('/search', (req, res) => {
     }
 })
 
+// add new route to use route parameters (these are the place holders in URL denoted by ':', eg:'/user/:id)
+
+app.get('/user/:id', (req, res) => {
+    const userId = req.params.id //extract id prameter
+    res.send(`UserId: ${userId}`)
+})
+
 //listens to the port at 3000
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
