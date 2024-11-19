@@ -42,6 +42,14 @@ app.get('/user/:id', (req, res) => {
     res.send(`UserId: ${userId}`)
 })
 
+//lets combine both query params and route params
+
+app.get('/product/:id', (req, res) => {
+    let productId = req.params.id;
+    let sortBy = req.query.sort;
+    res.send(`Product ID: ${productId}, Sort By: ${sortBy || 'default'}`)
+})
+
 //listens to the port at 3000
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
