@@ -24,6 +24,32 @@ app.get('/contact', (req, res) => {
     res.send('Contact us at Contact@gmail.com')
 })
 
+//added a new route to handle query parameters
+
+app.get('/search', (req, res) => {
+    let searchParam = req.query.query
+    if(searchParam){
+        res.send(`You searched for : ${searchParam}`)
+    }else{
+        res.send('No search term provided')
+    }
+})
+
+// add new route to use route parameters (these are the place holders in URL denoted by ':', eg:'/user/:id)
+
+app.get('/user/:id', (req, res) => {
+    const userId = req.params.id //extract id prameter
+    res.send(`UserId: ${userId}`)
+})
+
+//lets combine both query params and route params
+
+app.get('/product/:id', (req, res) => {
+    let productId = req.params.id;
+    let sortBy = req.query.sort;
+    res.send(`Product ID: ${productId}, Sort By: ${sortBy || 'default'}`)
+})
+
 //listens to the port at 3000
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
