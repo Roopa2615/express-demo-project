@@ -24,6 +24,17 @@ app.get('/contact', (req, res) => {
     res.send('Contact us at Contact@gmail.com')
 })
 
+//added a new route to handle query parameters
+
+app.get('/search', (req, res) => {
+    let searchParam = req.query.query
+    if(searchParam){
+        res.send(`You searched for : ${searchParam}`)
+    }else{
+        res.send('No search term provided')
+    }
+})
+
 //listens to the port at 3000
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
