@@ -9,8 +9,17 @@ app.use((req, res, next) => {
     next() // pass control to the next middleware or route
 })
 
+// add express.json middle to the app
+app.use(express.json())
+
 //this line serves a static file
 app.use(express.static('public'))
+
+//add a post route to handle json requests
+app.post('/api/data', (req, res) => {
+    const data = req.body //access the json data from the request body
+    res.send(`recieved JSON data: ${JSON.stringify(data)}`)
+})
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
