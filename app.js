@@ -9,6 +9,9 @@ app.use((req, res, next) => {
     next() // pass control to the next middleware or route
 })
 
+//this line serves a static file
+app.use(express.static('public'))
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
